@@ -6,13 +6,13 @@
 
 1. 克隆仓库（包含子模块）:
 ```bash
-git clone --recursive https://github.com/kefoeka/LLM_practicing.git
+git clone --recursive https://github.com/kefoeka/datasets_converter.git
 ```
 
 2. 如果您是项目创建者，首次添加子模块:
 ```bash
 cd LLM_practicing
-git submodule add https://github.com/NVIDIA/Megatron-LM.git
+git submodule add https://github.com/kefoeka/datasets_converter.git
 ```
 
 3. 安装依赖:
