@@ -11,7 +11,7 @@ git clone --recursive https://github.com/kefoeka/datasets_converter.git
 
 2. 如果您是项目创建者，首次添加子模块:
 ```bash
-cd LLM_practicing
+cd datasets_converter
 git submodule add https://github.com/kefoeka/datasets_converter.git
 ```
 
@@ -36,6 +36,7 @@ python load_dataset_example.py -d <dataset_name> [-o <output_dir>]
 
 - `-d, --dataset_name`: 数据集名称（必需），例如：togethercomputer/RedPajama-Data-1T-Sample
 - `-o, --output_dir`: 输出目录路径，默认为 local_datasets
+- `--trust_remote_code`: 允许执行数据集的自定义代码（对某些数据集必需）
 
 #### 功能
 
@@ -94,15 +95,15 @@ python megatron_dataset_reader.py -d <dataset_prefix> -m <model_name> [-i <index
 
 1. 下载数据集：
 ```bash
-python load_dataset_example.py -d togethercomputer/RedPajama-Data-1T-Sample
+python load_dataset_example.py -d simplescaling/s1K-1.1_tokenized
 ```
 
 2. 转换为Megatron格式：
 ```bash
-python megatron_data_converter.py -i local_datasets/RedPajama-Data-1T-Sample.json -o megatron_data -m AI-ModelScope/Llama-2-70b-hf
+python megatron_data_converter.py -i local_datasets/s1K-1.1_tokenized.json -o megatron_data -m Qwen/Qwen2.5-7B-Instruct
 ```
 
 3. 验证转换后的数据集：
 ```bash
-python megatron_dataset_reader.py -d megatron_data/megatron_dataset -m AI-ModelScope/Llama-2-70b-hf -i 0
+python megatron_dataset_reader.py -d megatron_data/megatron_dataset -m Qwen/Qwen2.5-7B-Instruct -i 0
 ``` 

@@ -22,6 +22,8 @@ def parse_arguments() -> argparse.Namespace:
                        help='数据集名称（必需），例如：togethercomputer/RedPajama-Data-1T-Sample')
     parser.add_argument('-o', '--output_dir', type=str, default=LOCAL_DATASET_PATH,
                        help='输出目录路径，默认为 local_datasets')
+    parser.add_argument('--trust_remote_code', action='store_true',
+                       help='允许执行数据集的自定义代码（对某些数据集必需）')
     return parser.parse_args()
 
 def log_error_with_traceback(error_msg: str, e: Exception) -> None:
@@ -63,7 +65,8 @@ def main() -> None:
     try:
         # 加载数据集
         print(f"正在加载数据集: {args.dataset_name}")
-        ds = load_dataset(args.dataset_name)
+        print(f"信任远程代码: {'是' if args.trust_remote_code else '否'}")
+        ds = load_dataset(args.dataset_name, trust_remote_code=args.trust_remote_code)
         
         # 打印数据集信息
         print("\n数据集信息:")
